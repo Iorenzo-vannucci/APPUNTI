@@ -35,6 +35,8 @@ Stazione meteorologica remota:
 SW per raccogliere dati in ambienti estremi (es. gestione dell’alimentazione per evitare guasti durante tempeste).
 Processi Software
 
+![IMMAGINE ARCHITETTURA HARDWARE](immagini/Architettura%20hardware%20del%20microinfusore%20di%20insulina.png)
+
 1. Modelli di Processo SW
 
 Modello a cascata:
