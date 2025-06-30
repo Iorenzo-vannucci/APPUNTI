@@ -3,7 +3,7 @@
 
 Simulazione del passaggio di automobili attraverso un quadrivio (incrocio a 4 strade) utilizzando processi Unix/Linux e comunicazione tramite IPC System V.
 
-## 📋 Specifiche del Progetto
+## Specifiche del Progetto
 
 Il progetto simula un incrocio stradale con:
 - **3 processi distinti**: `incrocio`, `garage`, e `automobile` (processo separato per ogni auto)
@@ -13,7 +13,7 @@ Il progetto simula un incrocio stradale con:
 
 ### Comportamento dei Processi
 
-#### 🚦 Processo Incrocio
+#### Processo Incrocio
 1. Attende notifica dal garage che ci sono 4 automobili
 2. Determina quale auto può attraversare secondo le regole stradali
 3. Scrive nel file `incrocio.txt` la strada di origine dell'auto scelta
@@ -23,7 +23,7 @@ Il progetto simula un incrocio stradale con:
 7. Ripete per tutte e 4 le auto
 8. **Terminazione**: con SIGTERM, termina per ultimo dopo tutti gli altri processi
 
-#### 🏭 Processo Garage
+#### Processo Garage
 1. Crea 4 processi automobile (uno per strada) con `fork()`
 2. Estrae casualmente la destinazione per ogni auto (diversa dall'origine)
 3. Emette messaggio per ogni auto creata
@@ -32,16 +32,16 @@ Il progetto simula un incrocio stradale con:
 6. Aspetta 1 secondo
 7. Riprende dal punto 1
 
-#### 🚗 Processo Automobile
+#### Processo Automobile
 1. Attende autorizzazione dall'incrocio
 2. Attraversa l'incrocio
 3. Scrive nel file `auto.txt` la propria strada di origine
 4. Comunica all'incrocio che ha finito e termina
 
-### ✅ Risultato Atteso
+### Risultato Atteso
 I file `incrocio.txt` e `auto.txt` devono essere **identici** al termine dell'esecuzione.
 
-## 🏗️ Architettura
+## Architettura
 
 ```
 ┌──────────────────┐    ┌─────────────────┐    ┌──────────────────┐
@@ -64,7 +64,7 @@ I file `incrocio.txt` e `auto.txt` devono essere **identici** al termine dell'es
                     └─────────────────────────┘
 ```
 
-## 📁 Struttura dei File
+## Struttura dei File
 
 ```
 Progetto/
@@ -82,7 +82,7 @@ Progetto/
 └── auto.txt                # File di log creato dalle automobili
 ```
 
-## 🚀 Compilazione ed Esecuzione
+## Compilazione ed Esecuzione
 
 ### Compilazione
 ```bash
@@ -115,7 +115,7 @@ kill -TERM $INCROCIO_PID
 # NOTA: Ctrl+C NON termina gracefully secondo le specifiche
 ```
 
-## 🔧 Dettagli Tecnici
+## Dettagli Tecnici
 
 ### IPC System V utilizzato
 - **Memoria Condivisa**: chiave `0x1234`
@@ -136,7 +136,7 @@ kill -TERM $INCROCIO_PID
 - **SIGINT**: NON gestito secondo le specifiche del progetto
 - **Ctrl+C**: NON termina gracefully - usare `kill -TERM <PID_incrocio>`
 
-## 🧪 Test e Verifica
+## Test e Verifica
 
 Il progetto include verifiche automatiche:
 
@@ -162,14 +162,14 @@ ipcrm -M 0x1234  # memoria condivisa
 ipcrm -S 0x5678  # semafori
 ```
 
-## 📝 Requisiti di Sistema
+## Requisiti di Sistema
 
 - **Sistema Operativo**: Unix/Linux/macOS
 - **Compiler**: GCC o Clang con supporto C99
 - **Librerie**: Standard POSIX + System V IPC
 - **Permessi**: utente normale (non root)
 
-## ⚠️ Note Importanti
+## Note Importanti
 
 1. **Ordine di avvio**: l'incrocio deve essere avviato PRIMA del garage
 2. **Terminazione**: SOLO il processo incrocio gestisce SIGTERM
@@ -177,7 +177,7 @@ ipcrm -S 0x5678  # semafori
 4. **File di output**: devono essere identici per il successo del test
 5. **Cleanup**: le risorse IPC vengono automaticamente rimosse
 
-## 🎓 Obiettivi Didattici
+## Obiettivi Didattici
 
 Questo progetto dimostra:
 - ✅ Creazione e gestione di processi con `fork()` e `exec()`
