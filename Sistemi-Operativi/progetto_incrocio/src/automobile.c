@@ -8,6 +8,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "../condiviso.h"
+#include "../incrocio.h"
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
@@ -43,35 +44,46 @@ int main(int argc, char *argv[]) {
     sem_wait(sem_auto);
 
     //Attraversamento (simulato)
-    sleep(1);
+    //sleep(1);
 
     //Log ATOMICO su entrambi i file auto.txt E incrocio.txt */
     sem_wait(sem_file_write);
     
-    //Scrive in auto.txt
+    char buf1[16];
+    int len1 = snprintf(buf1, sizeof(buf1), "%d\n", from);
+    
+    //Apre entrambi i file contemporaneamente
     int fd1 = open("log/auto.txt", O_CREAT | O_APPEND | O_WRONLY, 0666);
-    if (fd1 == -1) {
-        perror("open log/auto.txt");
+    int fd2 = open("log/incrocio.txt", O_CREAT | O_APPEND | O_WRONLY, 0666);
+    
+    if (fd1 == -1 || fd2 == -1) {
+        perror("open log files");
+        if (fd1 >= 0) close(fd1);
+        if (fd2 >= 0) close(fd2);
         sem_post(sem_file_write);
         exit(EXIT_FAILURE);
     }
     
-    char buf1[16];
-    int len1 = snprintf(buf1, sizeof(buf1), "%d\n", from);
+    //Scrive in entrambi i file prima di chiuderli
     if (write(fd1, buf1, len1) == -1) {
         perror("write log/auto.txt");
         close(fd1);
+        close(fd2);
         sem_post(sem_file_write);
         exit(EXIT_FAILURE);
     }
-    close(fd1);
     
-    //Scrive anche in incrocio.txt per mantenerli identici
-    int fd2 = open("log/incrocio.txt", O_CREAT | O_APPEND | O_WRONLY, 0666);
-    if (fd2 >= 0) {
-        write(fd2, buf1, len1);
+    if (write(fd2, buf1, len1) == -1) {
+        perror("write log/incrocio.txt");
+        close(fd1);
         close(fd2);
+        sem_post(sem_file_write);
+        exit(EXIT_FAILURE);
     }
+    
+    //Chiude entrambi i file
+    close(fd1);
+    close(fd2);
     
     sem_post(sem_file_write);
 

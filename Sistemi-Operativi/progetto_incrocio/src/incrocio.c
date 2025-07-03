@@ -9,23 +9,34 @@
 #include <string.h>
 #include <signal.h>
 #include "../condiviso.h"
+#include "../incrocio.h"
 
 
 // Variabile globale per controllare la terminazione del programma
 volatile int keep_running = 1;
+shared_data_t *global_shm = NULL;
 
 void signal_handler(int sig) {
     switch (sig) {
         case SIGINT:
             // Ignora SIGINT (CTRL+C)
-            printf("\nIncrocio: ricevuto SIGINT (CTRL+C) - ignorato. Usa 'kill -SIGTERM %d' per terminare.\n", getpid());
+            printf("\n\x1b[36mIncrocio:\x1b[37;1m \x1b[33;1mricevuto SIGINT (CTRL+C) - ignorato. Usa 'kill -SIGTERM %d' per terminare.\x1b[37;1m\n", getpid());
             fflush(stdout);
             break;
         case SIGTERM:
             // Termina il programma pulitamente
-            printf("\nIncrocio: ricevuto SIGTERM - terminazione in corso...\n");
+            printf("\n\x1b[36mIncrocio:\x1b[37;1m \x1b[32;1mricevuto SIGTERM - impostando flag di terminazione...\x1b[37;1m\n");
             fflush(stdout);
             keep_running = 0;
+            // Imposta il flag di terminazione nella memoria condivisa
+            if (global_shm != NULL) {
+                global_shm->terminate_flag = 1;
+            }
+            break;
+        case SIGQUIT:
+            // Ignora SIGQUIT (CTRL+\\)
+            printf("\n\x1b[36mIncrocio:\x1b[37;1m \x1b[33;1mricevuto SIGQUIT (CTRL+\\) - ignorato. Usa 'kill -SIGTERM %d' per terminare.\x1b[37;1m\n", getpid());
+            fflush(stdout);
             break;
         default:
             // Altri segnali: continua l'esecuzione
@@ -53,16 +64,22 @@ void setup_signal_handling() {
         perror("sigaction SIGTERM");
         exit(EXIT_FAILURE);
     }
+    // Installa il gestore per SIGQUIT (CTRL+\\)
+    if (sigaction(SIGQUIT, &sa, NULL) == -1) {
+        perror("sigaction SIGQUIT");
+        exit(EXIT_FAILURE);
+    }
     
     printf("Incrocio: configurazione segnali completata (PID: %d)\n", getpid());
-    printf("- SIGINT (CTRL+C) verrà ignorato\n");
-    printf("- SIGTERM terminerà il programma\n");
+    printf("-\x1b[34;1m SIGINT (CTRL+C) verrà ignorato\x1b[37m\n");
+    printf("-\x1b[34;1m SIGQUIT (CTRL+\\) verrà ignorato\x1b[37m\n");
+    printf("-\x1b[34;1m SIGTERM terminerà il programma\x1b[37m \x1b[37m \n");
     fflush(stdout);
 }
 
 //Pulisce le risorse prima della terminazione del programma.
 void cleanup_resources(shared_data_t *shm, sem_t *sem_garage, sem_t *sem_done, sem_t **sem_auto) {
-    printf("Incrocio: pulizia risorse in corso...\n");
+    printf("\x1b[33;1mIncrocio: pulizia risorse in corso...\x1b[37m\n");
     fflush(stdout);
     
     // Unmappa la memoria condivisa
@@ -80,7 +97,7 @@ void cleanup_resources(shared_data_t *shm, sem_t *sem_garage, sem_t *sem_done, s
         }
     }
     
-    printf("Incrocio: terminazione completata.\n");
+    printf("\x1b[32;1mIncrocio: terminazione completata.\x1b[37m\n");
     fflush(stdout);
 }
 
@@ -104,6 +121,8 @@ int main() {
         perror("mmap");
         exit(EXIT_FAILURE);
     }
+    
+    global_shm = shm;  // Salva riferimento globale per signal handler
 
     /* 2. Apertura semafori named */
     sem_t *sem_garage = sem_open(SEM_GARAGE, 0);    // aperto da garage con valore iniziale 0  
@@ -121,13 +140,16 @@ int main() {
     }
 
     //Loop principale di attraversamento
-    while (keep_running) {
+    while (keep_running && !shm->terminate_flag) {
         //3.1 Attesa passiva del garage 
         if (sem_wait(sem_garage) == -1) {
             // Se sem_wait viene interrotta da un segnale, controlla se dobbiamo fermarci
-            if (!keep_running) break;
+            if (!keep_running || shm->terminate_flag) break;
             continue; // Riprova se è stato un altro segnale
         }
+
+        // Controlla ancora il flag dopo aver ricevuto il segnale dal garage
+        if (!keep_running || shm->terminate_flag) break;
 
         //Scelta e attraversamento di ciascuna delle 4 auto
         //Costruzione array delle destinazioni (DENTRO il loop while) 
@@ -136,7 +158,7 @@ int main() {
             direzioni[i] = shm->cars[i].to;
         }
 
-        for (int pass = 0; pass < MAX_AUTO && keep_running; ++pass) {
+        for (int pass = 0; pass < MAX_AUTO && keep_running && !shm->terminate_flag; ++pass) {
 
             //GetNextCar individua l'indice k in base al codice della strada 
             int k = GetNextCar(direzioni);           // fornita in incrocio.h 
@@ -150,9 +172,9 @@ int main() {
             
             //Marca questa auto come già attraversata 
             direzioni[k] = -1;
-
+            
             //Log dell'attraversamento 
-            printf("Incrocio: auto %d da %d verso %d può attraversare\n",
+            printf("\x1b[36mIncrocio:\x1b[39m auto %d da %d verso %d può attraversare\x1b[39m\n",
                    k, shm->cars[k].from, shm->cars[k].to);
             fflush(stdout);
 
@@ -162,7 +184,7 @@ int main() {
             //Attesa che l'auto segnali il passaggio 
             if (sem_wait(sem_done) == -1) {
                 // Se sem_wait viene interrotta da un segnale, controlla se dobbiamo fermarci
-                if (!keep_running) break;
+                if (!keep_running || shm->terminate_flag) break;
                 // Altrimenti continua (riprova)
             }              
         }
