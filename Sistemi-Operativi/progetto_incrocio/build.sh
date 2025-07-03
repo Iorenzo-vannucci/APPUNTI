@@ -19,8 +19,8 @@ else
   EXTRA_LIBS="-lrt"
 fi
 
-gcc -o build/garage     src/garage.c     src/direzioni.c $EXTRA_LIBS
-gcc -o build/incrocio   src/incrocio.c   src/direzioni.c $EXTRA_LIBS
-gcc -o build/automobile src/automobile.c                   $EXTRA_LIBS
+gcc -o build/garage     src/garage.c      $EXTRA_LIBS
+gcc -o build/incrocio   src/incrocio.c    $EXTRA_LIBS
+gcc -o build/automobile src/automobile.c  $EXTRA_LIBS
 
 echo -e "${GREEN_BOLD}Build completata! Eseguibili creati nella cartella build/${RESET}"

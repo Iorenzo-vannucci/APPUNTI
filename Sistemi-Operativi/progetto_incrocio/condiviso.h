@@ -18,6 +18,7 @@ typedef struct {
 
 typedef struct {
     car_t cars[MAX_AUTO];
+    volatile int terminate_flag;  // Flag per terminazione coordinata dei processi
 } shared_data_t;
 
 /*

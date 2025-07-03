@@ -1,10 +1,8 @@
-// direction.c
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <semaphore.h>
 #include <sys/time.h>
-#include "../condiviso.h"
 
 #define NESSUNA_AUTO		-1
 #define NUM_STRADE			4
@@ -33,7 +31,6 @@ int StreetOnTheLeft(int iMyStrada, int iDistance) {
 	struct timeval tv;
 	long l;
 
-    
 	while(iDirezione == iMyStreet) {
 		gettimeofday(&tv, NULL);
 		l = tv.tv_usec;
@@ -89,7 +86,7 @@ int GetNextCar(int *piDirezioni) {
 						break;
 					}
 					else {
-						int iDoveVaIesima = piDirezioni[iMyStreet];
+						int iDoveVaDiFronte = piDirezioni[iStradaDiFronte], iDoveVaIesima = piDirezioni[iMyStreet];
 						if(GetDistanceFromStreet(iMyStreet, iDoveVaIesima) <= GetDistanceFromStreet(iMyStreet, iStradaDiFronte) 
 						   ||
 						   (GetDistanceFromStreet(iMyStreet, piDirezioni[iStradaDiFronte]) < GetDistanceFromStreet(iMyStreet, piDirezioni[iMyStreet]))) {
@@ -110,6 +107,6 @@ int GetNextCar(int *piDirezioni) {
 			}
 		}
 	}
-	
+	 
 	return iAuto;
 }
