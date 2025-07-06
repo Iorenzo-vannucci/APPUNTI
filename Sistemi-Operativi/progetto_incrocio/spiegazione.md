@@ -319,14 +319,3 @@ Il sistema implementa una **versione semplificata** del codice della strada:
 
 ---
 
-## 🎯 Conclusioni
-
-Questo simulatore rappresenta un **ottimo esempio** di programmazione di sistema che combina:
-
-- **Concorrenza**: gestione di processi multipli sincronizzati
-- **IPC avanzato**: memoria condivisa e semafori POSIX
-- **Algoritmi complessi**: implementazione regole di precedenza
-- **Robustezza**: gestione errori e terminazione pulita
-- **Best practices**: codice modulare e ben documentato
-
-Il sistema dimostra come implementare **comunicazione inter-processo efficiente** per simulare scenari del mondo reale con vincoli di sincronizzazione complessi. 
