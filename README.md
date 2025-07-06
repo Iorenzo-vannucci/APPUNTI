@@ -1,7 +1,7 @@
 <!-- Copertina del repository -->
 
 <p align="center">
-  <img src="/LOGO/image.png" alt="Banner universitario" width="800">
+  <img src="/LOGO/logo_unipg.png" alt="Banner universitario" width="800">
 </p>
 
 <h1 align="center">📚 Appunti Universitari di Informatica</h1>
