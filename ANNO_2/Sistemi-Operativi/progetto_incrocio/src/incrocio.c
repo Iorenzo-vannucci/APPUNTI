@@ -8,7 +8,6 @@
 #include <sys/types.h>
 #include <string.h>
 #include <signal.h>
-#include "../condiviso.h"
 #include "../incrocio.h"
 
 

@@ -1,4 +1,3 @@
-// automobile.c
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -7,7 +6,6 @@
 #include <sys/types.h>
 #include <string.h>
 #include <stdio.h>
-#include "../condiviso.h"
 #include "../incrocio.h"
 
 int main(int argc, char *argv[]) {
