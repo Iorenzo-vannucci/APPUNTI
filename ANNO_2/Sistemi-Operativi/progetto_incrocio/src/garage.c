@@ -8,7 +8,6 @@
 #include <string.h>
 #include <semaphore.h>
 #include <signal.h>
-#include "../condiviso.h"
 #include "../incrocio.h"
 
 // Variabili globali per la gestione della terminazione
@@ -24,11 +23,6 @@ void signal_handler(int sig) {
         case SIGTERM:
             printf("\n\x1b[35;1mGarage:\x1b[37;1m \x1b[33;1mricevuto SIGTERM - ignorato.\n" );
             fflush(stdout);
-        // keep_running = 1;
-        // // Imposta il flag di terminazione nella memoria condivisa
-        // if (global_shm != NULL) {
-        //     global_shm->terminate_flag = 1;
-        // }
             break;
         case SIGQUIT:
             printf("\n\x1b[35;1mGarage:\x1b[37;1m \x1b[33;1mricevuto SIGQUIT (CTRL+\\) - ignorato.\n");
@@ -69,11 +63,11 @@ void setup_signal_handling() {
 }
 
 void cleanup_resources(shared_data_t *shm, sem_t *sem_garage, sem_t *sem_done, sem_t *sem_file_write, sem_t **sem_auto_arr) {
-    printf("Garage: pulizia risorse in corso...\n");
+    printf("\x1b[33;1mGarage: pulizia risorse in corso...\x1b[37m\n");
     fflush(stdout);
     
     // Termina tutti i processi figli rimanenti
-    printf("\x1b[33;1mGarage: terminazione processi auto rimanenti...\x1b[0m\n");
+    printf("\x1b[33;1mGarage: terminazione processi auto rimanenti...\x1b[37m\n");
     int status;
     pid_t child_pid;
     while ((child_pid = waitpid(-1, &status, WNOHANG)) > 0) {
@@ -109,7 +103,7 @@ void cleanup_resources(shared_data_t *shm, sem_t *sem_garage, sem_t *sem_done, s
     }
     shm_unlink(SHM_NAME);
     
-    printf("Garage: terminazione completata.\n");
+    printf("\x1b[32;1mGarage: terminazione completata.\x1b[37;1m\n");
     fflush(stdout);
 }
 
