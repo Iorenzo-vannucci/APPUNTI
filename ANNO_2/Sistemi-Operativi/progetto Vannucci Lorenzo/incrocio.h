@@ -75,7 +75,7 @@ int GetNextCar(int *piDirezioni);
 
 
 
-
+void incrocio_log(int from);
 
 int GetDistanceFromStreet(int iStreet, int iDirezione) {
 	if(iDirezione == 0)

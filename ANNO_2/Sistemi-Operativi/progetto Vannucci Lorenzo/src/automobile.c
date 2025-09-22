@@ -8,18 +8,20 @@
 #include <stdio.h>
 #include "../incrocio.h"
 
+// Funzione principale del processo automobile
 int main(int argc, char *argv[]) {
+    // Controlla se il numero di argomenti è corretto
     if (argc != 3) {
+        // Messaggio di errore per uso scorretto
         const char *msg = "Usage: automobile <from> <to>\n";
         write(STDERR_FILENO, msg, strlen(msg));
         _exit(EXIT_FAILURE);
     }
 
-    //parsing degli argomenti 
+    // Parsing degli argomenti
     int from = atoi(argv[1]);
     
-
-    //Apertura semafori named
+    // Apertura semafori
     char sem_name[32];
     snprintf(sem_name, sizeof(sem_name), SEM_AUTO_FMT, from);
     sem_t *sem_auto = sem_open(sem_name, 0);
@@ -38,58 +40,42 @@ int main(int argc, char *argv[]) {
         _exit(EXIT_FAILURE);
     }
 
-    //Attesa via semaforo del via libera dall'incrocio
+    // Attesa via semaforo del via libera dall'incrocio
     sem_wait(sem_auto);
 
-    //Attraversamento (simulato)
-    //sleep(1);
-
-    //Log ATOMICO su entrambi i file auto.txt E incrocio.txt */
+        // Attesa per accesso esclusivo ai file di log
     sem_wait(sem_file_write);
     
+    // Buffer per scrittura nei file di log
     char buf1[16];
     int len1 = snprintf(buf1, sizeof(buf1), "%d\n", from);
     
-    //Apre entrambi i file contemporaneamente
+    // Apre il file per il log dell'automobile
     int fd1 = open("log/auto.txt", O_CREAT | O_APPEND | O_WRONLY, 0666);
-    int fd2 = open("log/incrocio.txt", O_CREAT | O_APPEND | O_WRONLY, 0666);
     
-    if (fd1 == -1 || fd2 == -1) {
-        perror("open log files");
-        if (fd1 >= 0) close(fd1);
-        if (fd2 >= 0) close(fd2);
+    // Controlla se l'apertura del file è fallita
+    if (fd1 == -1) {
+        perror("open log/auto.txt");
         sem_post(sem_file_write);
         exit(EXIT_FAILURE);
     }
     
-    //Scrive in entrambi i file prima di chiuderli
+    // Scrive nel file prima di chiuderlo
     if (write(fd1, buf1, len1) == -1) {
         perror("write log/auto.txt");
         close(fd1);
-        close(fd2);
         sem_post(sem_file_write);
         exit(EXIT_FAILURE);
     }
     
-    if (write(fd2, buf1, len1) == -1) {
-        perror("write log/incrocio.txt");
-        close(fd1);
-        close(fd2);
-        sem_post(sem_file_write);
-        exit(EXIT_FAILURE);
-    }
-    
-    //Chiude entrambi i file
     close(fd1);
-    close(fd2);
     
+    // Rilascia il semaforo per l'accesso ai file
     sem_post(sem_file_write);
 
     // Notifica all'incrocio del completamento
-    
     sem_post(sem_done);
     
-
-    //Termina processo
+    // Termina processo
     _exit(EXIT_SUCCESS);
 }
