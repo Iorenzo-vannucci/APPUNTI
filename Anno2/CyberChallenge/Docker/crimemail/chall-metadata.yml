@@ -1,8 +1,0 @@
-name: Crimemail
-ctf: INS'hAck 2018
-difficulty: easy
-original_writeups: https://ctftime.org/task/5738
-backup_writeups:
-        - writeup.pdf
-        - writeup.md
-notes: Sources https://github.com/HugoDelval/inshack-2018

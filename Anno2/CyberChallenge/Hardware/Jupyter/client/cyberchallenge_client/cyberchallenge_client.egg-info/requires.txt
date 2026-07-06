@@ -1,6 +1,0 @@
-
-[:python_version == "5.0.1"]
-rpyc
-
-[:python_version == "5.5.0"]
-chipwhisperer
