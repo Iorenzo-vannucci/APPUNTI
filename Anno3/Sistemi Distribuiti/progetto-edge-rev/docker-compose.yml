@@ -1,0 +1,62 @@
+services:
+  dispatcher-seed:
+    build:
+      context: .
+      dockerfile: Dockerfile.dispatcher
+    container_name: dispatcher-seed
+    ports:
+      - "5005:5005"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./shared_tasks:/app/shared_tasks
+    environment:
+      - SDEP_EXECUTOR=docker
+      - HOST_SHARED_TASKS=${PWD}/shared_tasks
+      - LOCAL_SHARED_TASKS=/app/shared_tasks
+    command: python dispatcher.py 5005 dispatcher-seed
+    networks:
+      - chord-net
+
+  dispatcher-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.dispatcher
+    container_name: dispatcher-2
+    ports:
+      - "5006:5005"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./shared_tasks:/app/shared_tasks
+    environment:
+      - SDEP_EXECUTOR=docker
+      - HOST_SHARED_TASKS=${PWD}/shared_tasks
+      - LOCAL_SHARED_TASKS=/app/shared_tasks
+    command: python dispatcher.py 5005 dispatcher-2 dispatcher-seed:5005
+    depends_on:
+      - dispatcher-seed
+    networks:
+      - chord-net
+
+  dispatcher-3:
+    build:
+      context: .
+      dockerfile: Dockerfile.dispatcher
+    container_name: dispatcher-3
+    ports:
+      - "5007:5005"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./shared_tasks:/app/shared_tasks
+    environment:
+      - SDEP_EXECUTOR=docker
+      - HOST_SHARED_TASKS=${PWD}/shared_tasks
+      - LOCAL_SHARED_TASKS=/app/shared_tasks
+    command: python dispatcher.py 5005 dispatcher-3 dispatcher-seed:5005
+    depends_on:
+      - dispatcher-seed
+    networks:
+      - chord-net
+
+networks:
+  chord-net:
+    driver: bridge

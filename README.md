@@ -1,7 +1,7 @@
 <!-- Copertina del repository -->
 
 <p align="center">
-  <img src="/LOGO/logo_unipg.png" alt="Banner universitario" width="800">
+  <img src="LOGO/logo_unipg.png" alt="Banner universitario" width="800">
 </p>
 
 <h1 align="center">📚 Appunti Universitari di Informatica</h1>
@@ -35,35 +35,61 @@ Questo repository raccoglie **appunti, esercitazioni, progetti** e materiale uti
 
 ## 🗺️ Struttura del repository
 
-```
+```text
 APPUNTI/
-├── ANNO_1/
-│   └── (vuoto per ora)
-│
-├── ANNO_2/
-│   ├── CTF/
-│   ├── Diritto-Civile-Del-Digitale/
-│   ├── Ing-SW/
-│   ├── Linguaggi-Formali/
-│   └── Sistemi-Operativi/
+├── Anno1/
+│   ├── Architettura degli Elaboratori/
+│   └── LOGICA/
+├── Anno2/
+│   ├── Algoritmi/
+│   ├── Calcolo_Numerico/
+│   ├── CyberChallenge/
+│   ├── Fisica/
+│   ├── Ingegneria Del Software/
+│   ├── Linguaggi Formali/
+│   └── Sistemi Operativi/
+├── Anno3/
+│   ├── Basi_di_Dati/
+│   ├── Introduzione_IA/
+│   ├── Programmazione_web_mobile/
+│   ├── Sicurezza Informatica/
+│   └── Sistemi Distribuiti/
 ├── LICENSE
 ├── LOGO/
 └── README.md
 ```
 
-📌 **Nota**: le cartelle sono suddivise per anno accademico (`ANNO_1`, `ANNO_2`), e ogni corso ha una propria sottocartella con i materiali relativi.
+📌 **Nota**: le cartelle sono suddivise per anno accademico (`Anno1`, `Anno2`, `Anno3`), e ogni corso ha una propria sottocartella con i materiali relativi.
 
 ---
 
 ## 📚 Materie
 
+### 📅 Primo Anno (Anno 1)
 | 📁 Cartella | Descrizione |
-|------------|-------------|
-| `CTF` | Write-up e materiali di sicurezza informatica e Capture The Flag |
-| `Diritto-Civile-Del-Digitale` | Appunti su aspetti legali del digitale |
-| `Ing-SW` | Ingegneria del software: teoria, modelli, esempi |
-| `Linguaggi-Formali` | Linguaggi formali, automi, grammatiche |
-| `Sistemi-Operativi` | Gestione della memoria, processi, progetti in C |
+| :--- | :--- |
+| [`Architettura degli Elaboratori`](Anno1/Architettura%20degli%20Elaboratori) | Teoria dell'architettura del calcolatore, programmazione Assembly PDP-8 ed emulatori |
+| [`LOGICA`](Anno1/LOGICA) | Logica per l'Informatica, logica proposizionale e progetti di reti logiche |
+
+### 📅 Secondo Anno (Anno 2)
+| 📁 Cartella | Descrizione |
+| :--- | :--- |
+| [`Algoritmi`](Anno2/Algoritmi) | Algoritmi e Strutture Dati: teoria dei grafi, algoritmi di ricerca (DFS, Bellman-Ford) ed esercizi Python |
+| [`Calcolo_Numerico`](Anno2/Calcolo_Numerico) | Teoria dei metodi numerici e applicazioni di calcolo |
+| [`CyberChallenge`](Anno2/CyberChallenge) | Materiale di sicurezza informatica: crittografia, web security, hardware hacking, Docker e CTF |
+| [`Fisica`](Anno2/Fisica) | Appunti ed esercizi di Fisica Generale (elettromagnetismo, condensatori e capacità) |
+| [`Ingegneria Del Software`](Anno2/Ingegneria%20Del%20Software) | Metodologie di sviluppo, diagrammi UML e Design Pattern creazionali in Java |
+| [`Linguaggi Formali`](Anno2/Linguaggi%20Formali) | Linguaggi formali, grammatiche, automi (DFA/NFA) e tracce d'esame orale |
+| [`Sistemi Operativi`](Anno2/Sistemi%20Operativi) | Concorrenza, thread, mutua esclusione e progetti di laboratorio in C |
+
+### 📅 Terzo Anno (Anno 3)
+| 📁 Cartella | Descrizione |
+| :--- | :--- |
+| [`Basi_di_Dati`](Anno3/Basi_di_Dati) | Progettazione concettuale (E-R), logica e normalizzazione di basi di dati relazionali |
+| [`Introduzione_IA`](Anno3/Introduzione_IA) | Fondamenti di Intelligenza Artificiale: progetto AgriBot (Python/AIMA) e reti neurali (Keras, MLP, CNN) |
+| [`Programmazione_web_mobile`](Anno3/Programmazione_web_mobile) | Sviluppo di applicazioni web: architettura Node.js/Express, database SQL ed esercitazioni pratiche |
+| [`Sicurezza Informatica`](Anno3/Sicurezza%20Informatica) | Sicurezza delle reti (crittografia, chiavi pubbliche/private, protocolli di rete) |
+| [`Sistemi Distribuiti`](Anno3/Sistemi%20Distribuiti) | Progettazione di sistemi distribuiti, algoritmo Chord DHT e progetto d'esame Edge Rev |
 
 ---
 
@@ -74,7 +100,7 @@ APPUNTI/
    git clone https://github.com/Iorenzo-vannucci/APPUNTI.git
    ```
 2. Naviga tra le cartelle per cercare la materia d’interesse.
-3. Apri i file `.md`, `.pdf` o progetti per consultare gli appunti.
+3. Apri i file `.md`, `.pdf`, `.ipynb` o progetti per consultare gli appunti.
 4. Se noti errori o vuoi contribuire, apri una Issue o una Pull Request.
 
 ---
@@ -110,5 +136,5 @@ Questo progetto è rilasciato con licenza **MIT**. Vedi il file [LICENSE](LICENS
 ---
 
 <p align="center">
-  <em>Ultimo aggiornamento: 06/07/2025</em>
+  <em>Ultimo aggiornamento: Luglio 2026</em>
 </p>
