@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "stat.h": "c",
-        "condiviso.h": "c",
-        "mman.h": "c",
-        "fcntl.h": "c"
-    }
-}

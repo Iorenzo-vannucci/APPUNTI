@@ -1,0 +1,53 @@
+body{
+    background-color: darkorchid;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 0;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr ;
+    grid-gap: 1em;
+    padding: 1em;
+    height: auto;
+    
+}
+
+button{
+    background-color: darkorchid;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    width: 40%;
+    height: 3em;
+    margin-bottom: 20px;    
+    align-self: center;
+}
+
+.image-container{
+    width: 70%;
+    height: 40%;
+    margin: auto;
+    
+}
+
+#image{
+    width: 50%;
+    margin-top: 30px;
+}
+
+.headers-grid{
+    color: darkorchid;
+}
+
+.production, .optimization, .solutions, .customers, .strategy, .talks{
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}

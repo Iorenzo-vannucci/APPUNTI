@@ -1,0 +1,72 @@
+body{
+    
+    font-family: sans-serif;
+}
+
+span{
+    color: red;
+}
+.login-box{
+    border: 3px solid black;
+    padding: 1em;
+    width: 40%;
+    margin: 100px auto;
+    
+}
+
+h1{
+    color: rgb(14, 14, 103);
+}
+label{
+    text-align: left;
+}
+
+form input {
+    border: 1px black solid;
+    border-bottom: 1px solid gray;
+    width: 95%;
+    display: block;
+    padding: 5px;
+    border-radius: 15px;
+    margin-bottom: 1.5em;
+    
+    
+    
+}
+
+.form-row{
+    display: flex;
+    color: rgb(14, 14, 103);
+    
+    
+}
+
+#soft-A, #soft-B, #soft-C{
+    width: auto;
+}
+
+
+.urgently {
+    display: flex;        
+   
+    color: rgb(14, 14, 103);
+}
+
+#hurry, #medium, #chill {
+    width: auto;         
+}
+
+button{
+    width: 100%;
+    background-color: rgb(14, 14, 103);
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+#color_span{
+    color: black;
+    
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="script/menu.js" defer></script>
+    <script src="script/login.js" defer></script>
+    <title>Accedi - Circolo Tennis</title>
+    
+</head>
+<body style="background-color: #F4F2EE;">
+
+    <nav>
+        <a href="index.html"><img src="/foto/logo.png" alt="Logo" class="logo"></a>
+        
+        <button class="burger" onclick="toggleMenu()">&#9776;</button>
+        <ul class="menu" id="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="abbonati.html">Abbonati</a></li>
+            <li><a href="ranking.html">Ranking</a></li>
+            <li><a href="contatti.html">Contatti</a></li>
+            
+            <li id="menuLoginBtn"><a href="login.html" class="login_button">Login</a></li>
+            
+            <li id="menuUserDropdown" class="dropdown">
+                <button class="dropdown-trigger" onclick="toggleDropdown(event)">
+                    <span class="material-symbols-outlined" id="navUserIcon">person</span>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="#" id="linkGestisciAccount">Gestisci Account</a>
+                    <a href="#" onclick="logout()">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="auth-container">
+        <h1>Accedi</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="text" id="loginEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" required>
+            </div>
+            <button type="submit" class="auth-btn">Entra</button>
+            <div id="loginMsg" class="msg"></div>
+        </form>
+
+        <p class="redirect-text">
+            Non sei ancora registrato? 
+            <a href="registrati.html">Registrati</a>
+        </p>
+    </div>
+
+</body>
+</html>

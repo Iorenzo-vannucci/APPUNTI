@@ -1,0 +1,10 @@
+pyproject.toml
+setup.cfg
+cyberchallenge_client/__init__.py
+cyberchallenge_client/_result.py
+cyberchallenge_client/ccclient.py
+cyberchallenge_client.egg-info/PKG-INFO
+cyberchallenge_client.egg-info/SOURCES.txt
+cyberchallenge_client.egg-info/dependency_links.txt
+cyberchallenge_client.egg-info/requires.txt
+cyberchallenge_client.egg-info/top_level.txt

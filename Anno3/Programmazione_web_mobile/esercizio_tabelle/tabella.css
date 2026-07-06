@@ -1,0 +1,20 @@
+table, th, tr, td{
+    
+    border-collapse: collapse;
+    border: solid 1px black;
+    padding: 0.5em;
+
+}
+
+th{
+    background-color: rgb(188, 188, 188);
+}
+
+body{
+    text-align: left;
+    
+}
+table{
+    margin: auto;
+    width: 70%;
+}

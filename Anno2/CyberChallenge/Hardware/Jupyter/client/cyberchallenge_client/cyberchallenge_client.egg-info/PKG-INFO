@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: cyberchallenge_client
+Version: 0.0.1
+Summary: CyberChallenge ChipWhisperer Client Lib
+Home-page: https://github.com/RHESGroup/cw-cyberchallenge
+Author: Mrcuve0
+Author-email: mrcuve0@posteo.net
+License: GPLv3
+Requires-Dist: rpyc; python_version == "5.0.1"
+Requires-Dist: chipwhisperer; python_version == "5.5.0"

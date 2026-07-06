@@ -1,0 +1,441 @@
+ 
+ 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					 ________      ___    ___ ________  _______   ________          ________  ___  ________  ________  ___  ________     
+ 					|\   ____\    |\  \  /  /|\   __  \|\  ___ \ |\   __  \        |\   __  \|\  \|\   __  \|\   __  \|\  \|\   __  \    
+					\ \  \___|    \ \  \/  / \ \  \|\ /\ \   __/|\ \  \|\  \       \ \  \|\ /\ \  \ \  \|\ /\ \  \|\ /\ \  \ \  \|\  \   
+					 \ \  \        \ \    //  \ \   __  \ \  \_|/_\ \   _  _\       \ \   __  \ \  \ \   __  \ \   __  \ \  \ \   __  \  
+					  \ \  \____    \/  / /    \ \  \|\  \ \  \_|\ \ \  \\  \|       \ \  \|\  \ \  \ \  \|\  \ \  \|\  \ \  \ \  \ \  \ 
+					   \ \_______\__/  / /      \ \_______\ \_______\ \__\\ _\        \ \_______\ \__\ \_______\ \_______\ \__\ \__\ \__\
+					    \|_______|\___/ /        \|_______|\|_______|\|__|\|__|        \|_______|\|__|\|_______|\|_______|\|__|\|__|\|__|                                       	                                                                                                              
+					                                                                             
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+							##############################################
+									ARCHITETTURA
+							##############################################
+
+Controllare l'architettura di un file
+
+file <nome_eseguibile>
+
+Controllare l'architettura del sistema
+
+uname -m
+
+							##############################################
+							#		     HASH		     #
+							##############################################
+
+Siti per la decriptazione di hash
+
+crackstation.net
+
+crackhash.online
+
+md5decrypt.net
+
+fileformat.info
+
+Calcolo dell'hash di una stringa senza invio a capo
+
+echo -n "pippo" | md5sum
+
+							##############################################
+							#		    COOKIE		     #
+							##############################################
+
+Funzionamento di un cookie
+
+Il protocollo HTTP non prevede meccanismi di autenticazione. Quando un client effettua una richiesta, il server non distingue da quale dispositivo provenga. I cookie permettono di mantenere la sessione utente:
+
+Prima richiesta: Il browser invia una GET request al server.
+
+Risposta: Il server risponde allegando un cookie.
+
+Seconda richiesta: Il browser include il cookie nella richiesta successiva, permettendo al server di riconoscerlo.
+
+Esempio:
+
+(Richiesta 1)                      
+Browser ---GET_REQUEST ---> Server
+
+(Risposta 1)
+Browser ---GET_RESPONSE_with_cookie_fe451...ccdw---> Server
+
+(Richiesta 2)
+Browser --- GET_RESPONSE_with_cookie_fe451...ccdw---> Server
+
+(Richiesta 2)
+Browser <--- GET_RESPONSE_with_cookie_fe451...ccdw --- Server
+
+
+							##############################################
+							#		     DOCKER   	    	     #
+							##############################################
+
+Verificare lo stato del servizio Docker
+
+sudo systemctl status docker
+
+							##############################################
+							#		     FILE ELF                #
+							##############################################
+
+Link dinamico vs statico
+
+Dinamico: il file ELF dipende da librerie esterne.
+
+Statico: tutte le funzioni necessarie sono incorporate nel file, rendendolo autosufficiente.
+
+Struttura di un file ELF
+
+.text: contiene il codice eseguibile.
+
+.bss: variabili non inizializzate.
+
+.data, .data1: dati inizializzati.
+
+.rodata, .rodata1: dati di sola lettura.
+
+.symtab: tabella dei simboli.
+
+.dynamic: informazioni per il linking dinamico.
+
+							##############################################
+							#		   PROCESSORI 		     #
+							##############################################
+
+Registri e architettura
+
+I processori hanno registri a 32 o 64 bit.
+Il registro RIP memorizza l'indirizzo dell'istruzione in esecuzione.
+
+							##############################################
+							#		SQL INJECTION		     #
+							##############################################
+
+Principio di un attacco SQL Injection
+
+Se un backend non valida correttamente gli input, è possibile manipolare le query SQL per estrarre informazioni.
+
+Esempi di attacchi
+
+Bypass dell'autenticazione:
+
+Username: ' OR '1'='1
+Password: qualsiasi
+
+Verifica numero di colonne (ORDER BY):
+
+Username: ' ORDER BY 1--
+Username: ' ORDER BY 2--
+
+Se un numero elevato causa errore, si deduce il numero di colonne disponibili.
+
+
+##############################################
+#		    UNION    		     #
+##############################################
+
+Uso di UNION per ottenere dati sensibili
+
+Unire dati con la tabella information_schema.columns
+
+' UNION SELECT table_name, column_name FROM information_schema.columns--
+
+Estrarre password hashate
+
+' UNION SELECT pass_md5 FROM users--
+
+Forza bruta su hash (con dizionari o tool specifici).
+
+
+
+##############################################
+#	      AUTOMAZIONE SQLMAP	     #
+##############################################
+
+SQLMap per testare vulnerabilità SQL
+
+sqlmap -u "http://127.0.0.1:8080/hint.php" --data="username=pippo" --dbs
+
+Hashcat per forzare password hashate
+
+Tool potente per attacco a forza bruta su hash.
+
+
+
+
+
+
+							##############################################
+							#	        BUFFER OVERFLOW		     #
+							##############################################
+
+Cos'è un Buffer Overflow?
+
+Un buffer overflow (o sovraccarico del buffer) è una vulnerabilità di sicurezza che si verifica quando un programma scrive più dati di quanti ne possa contenere un buffer di memoria, sovrascrivendo aree adiacenti della memoria. Questo può portare a crash del programma o, in alcuni casi, a esecuzione di codice arbitrario da parte di un attaccante.
+
+
+###########################################
+#     Tipologie di Buffer Overflow	  #
+###########################################
+
+
+Stack-based Buffer Overflow: si verifica quando un programma scrive dati oltre la fine di un buffer situato nello stack. Questo può portare alla sovrascrittura del puntatore di ritorno della funzione, consentendo a un attaccante di eseguire codice arbitrario.
+
+Heap-based Buffer Overflow: si verifica quando viene sovrascritto un buffer allocato dinamicamente nell'heap, potenzialmente permettendo la corruzione di strutture di controllo della memoria.
+
+Come avviene un attacco Buffer Overflow
+
+L'attaccante individua un programma vulnerabile che accetta input dell'utente senza un adeguato controllo delle dimensioni.
+
+Viene inviato un input appositamente progettato che supera i limiti del buffer.
+
+Se lo stack viene corrotto, è possibile sovrascrivere l'indirizzo di ritorno e far eseguire codice arbitrario.
+
+In alcuni casi, l'attaccante può iniettare uno shellcode all'interno della memoria e manipolare il flusso di esecuzione per eseguirlo.
+
+
+###########################################
+#     		  ESEMPIO	  	  #
+###########################################
+
+
+In questa breve esercitazione, vogliamo riprodurre volutamente un esempio di codice C vulnerabile ad un attacco di tipo "buffer overflow". Ricordiamo che per "buffer overflow" intendiamo quell'evento che si realizza quando un programma copia all'interno di un buffer (cioÃ¨, array) un input esterno la cui lunghezza eccede quella del buffer.
+
+Un evento di questo tipo, se non viene impedito, o comunque rilevato ed opportunamente gestito, causa l'interruzione forzata del programma (il cosiddetto crash).
+Una vulnerabilitÃ  "buffer overflow" puÃ² quindi essere sfruttata ("exploit") per attaccare la disponibilitÃ  di un sistema/servizio, causando in modo volontario il blocco del sistema/servizio in questione.
+
+Va osservato perÃ² che se si verificano determinate circostanze, una vulnerabilitÃ  "buffer overflow" puÃ² essere sfruttata per effettuare attacchi molto dannosi. In particolare, se il programma vulnerabile non viene interrotto in modo forzato dal sistema operativo, cioÃ¨ se il sistema operativo non rileva l'overflow del buffer, un attaccante tramite un input malevolo artificiosamente creato puÃ² riuscire a sovvertire la logica di funzionamento del programma stesso. In alcune situazione, potrebbe riuscire ad eseguire uno "shellcode" ottenendo quindi il controllo del sistema operativo con i diritti dell'utente associato al processo vulnerabile. Se l'attaccante riuscisse ad effettuare una scalata di privilegi, potrebbe sfruttare una vulnerabilitÃ  "buffer overflow" per ottenere il controllo totale del sistema operativo.
+
+Creiamo un nuovo file denominato "bufferoverflow.c" e inseriamo il seguente codice sorgente.
+
+--------------------[inizio sorgente C]--------------------
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+
+	int pwd_found = 0;
+	char buff[15];
+
+	printf("Inserirci la password: \n");
+	gets(buff);
+
+	if (strcmp(buff, "Cybers3cur1ty")) {
+		printf("Password errata \n");
+	}
+	else {
+		printf("Password corretta \n");
+		pwd_found = 1;
+	}
+
+	if (pwd_found) {
+		printf("Ora hai acquisito i diritti di root!!! \n");
+	}
+
+	return 0;
+}
+--------------------[fine sorgente C]--------------------
+
+L'obiettivo del programma è simulare una procedura di login. Nello specifico, viene chiesto all'utente di inserire una password (da linea di comando).
+Dopodichè, tale password verrà  salvata in un buffer locale e contestualmente confrontata con la password cablata nel codice sorgente ("Cybers3cur1ty").
+Se la password inserita à errata (corretta) all'utente sarà  mostrato il messaggio "Password errata" ("Password errata").
+
+Cosa molto importante, nel caso di password corretta dovrà  essere visualizzato anche il messaggio "Ora hai acquisito i diritti di root!!!".
+
+Per compilare è necessario aprire il terminale, portarsi nella cartella contenete il sorgente, ed impartire il seguente comando:
+gcc bufferoverflow.c -o bufferoverflow.o
+-----------------------------------------------------------
+
+La compilazione viene eseguita con successo, anche se sono segnalati due warning entrambi riguardante la funzione gets().
+
+
+
+
+
+
+							##############################################
+							#	          CLIENT SIDE ATTACK	           #
+							##############################################
+							
+##############################################
+#	     Cross site scripting	     #
+##############################################
+non vengono fatte sanificazioni o controlli generali per prevenire gli attacchi. In questo caso l'attacco non avviene direttamente ma attraverso delle manovre, per questo cross site. 
+
+XSS reflected, in questo tipo di attacco, lo script dannoso viene inviato tramite una richiesta http (come un URL
+XSS Stored: In questo caso lo script dannoso viene inviato e salvato in modo permanente nel server (ad esempio in una base dati, nei commenti di un forum o in un campo di input di un'applicazione)
+
+XSS DOM-based: Questo tipo di attacco si verifica quando il codice JavaScript client-side manipola il DOM (Document Object Model --> struttura pagina web) in modo non sicuro, utilizzando dati provenienti da fonti non sicure come l'URL o il corpo di una richiesta.
+
+TUTTE QUESTE SONO dal lato client e di modifica JavaScript
+
+
+######################################
+#           PREVENZIONE		     #
+######################################
+Sanificazione dell'input: far si che l'input sia preso correttamente e non permettere all'utente di dare input interpretabili come comandi (trasformare in stringa tutti gli input)
+
+Escaping: vietare l'utilizzo di alcuni caratteri per fare gli attacchi, attraverso una cifratura. Ci sono lo stesso delle vulnerabilità che aggirano l'escaping.
+
+Content security policy: implementazione di una policy di sicurezza dei contenuti per limitare l'esecuzione di script da fonti non sicure.
+
+Framework security: molti framework web moderni offrono meccanismi di protezione contro XSS, come l'automatico escaping dei dati.
+
+
+
+
+
+
+
+
+
+RSA
+
+encrypt(x) = m^e mod(n)
+decrypt(x) = c^d mod(n)
+
+n = p*q
+
+a ≡ b mod N
+A-b = K*N
+
+RSA-OAEP
+Caratteristiche principali di RSA-OAEP:
+	1.	Protezione contro attacchi deterministici: L’algoritmo RSA tradizionale è deterministico, il che significa che se cifri la stessa informazione due volte, otterrai lo stesso risultato. Questo è un rischio in contesti dove la sicurezza è cruciale. RSA-OAEP introduce una 			componente casuale nel processo di padding, rendendo ogni cifratura unica anche con lo stesso testo in chiaro.
+	2.	Funzionamento:
+		•	Messaggio: Il messaggio da cifrare viene prima “padded”, cioè viene aggiunto del rumore in modo da allinearlo alla lunghezza richiesta dall’algoritmo RSA.
+		•	Funzione Hash: Viene utilizzata una funzione di hash (tipicamente SHA-1 o SHA-256) per produrre il padding, garantendo che i dati siano cifrati in modo sicuro e che il formato finale sia difficile da decifrare senza la chiave privata.
+		•	Cifrazione: Dopo il padding, il messaggio risultante viene cifrato utilizzando la chiave pubblica RSA.
+	3.	Vantaggi:
+		•	Maggiore sicurezza rispetto al semplice RSA.
+		•	Protezione contro determinati tipi di attacchi matematici, come quelli che sfruttano la ripetizione dei messaggi cifrati.
+	4.	Sicurezza: RSA-OAEP è progettato per essere resistente agli attacchi di decrittazione forzata, in particolare a quelli legati all’uso di messaggi ripetuti o schemi di cifratura deboli.
+
+######################################
+#             ORACOLO		        #
+######################################
+
+L’idea di un oracolo nelle criptografie come RSA e la proprietà omomorfica sono concetti che si intrecciano in modo interessante, soprattutto quando consideriamo gli attacchi che sfruttano l’oracolo o la struttura algebrica sottostante. In particolare, un oracolo RSA è spesso un sistema che consente a un attaccante di interagire con il sistema di cifratura in modo da ottenere informazioni su messaggi cifrati, senza dover conoscere direttamente la chiave privata.
+
+Oracolo nelle RSA
+
+In crittografia, un oracolo è un’entità che risponde a delle richieste in modo da fornire informazioni utili all’attaccante, ma senza rivelare direttamente la chiave segreta. Un attacco che sfrutta un oracolo può essere progettato in vari modi, ad esempio:
+	1.	Oracolo di decifrazione: Immagina di avere un oracolo che può decifrare un messaggio cifrato per te. Se un attaccante ha accesso a un oracolo RSA, può fare una serie di richieste, chiedendo la decifrazione di messaggi cifrati e cercando di recuperare informazioni sulla chiave privata. Questo tipo di attacco è molto potente se l’oracolo risponde in modo che l’attaccante possa dedurre qualcosa sul messaggio originale.
+	2.	Attacco di tipo “chosen-ciphertext” (CCA): Un attacco CCA è un tipo di attacco in cui l’attaccante ha accesso a un oracolo di decifrazione e può scegliere quale testo cifrato inviare per ottenere la sua decifrazione. Questo tipo di attacco può essere usato per recuperare informazioni sulla chiave privata RSA se non si adottano tecniche di protezione come RSA-OAEP.
+
+Proprietà Omomorfiche e RSA
+
+La proprietà omomorfica in RSA implica che RSA è in grado di “preservare” le operazioni sui numeri: se cifriamo due numeri a e b con RSA, possiamo ottenere il prodotto cifrato di a e b senza conoscere i numeri originali. Più formalmente, se c_1 = RSA(a), allora c_1 e c_2 = RSA(b) allora c_1 * c_2 = RSA(a*b), sfruttando la proprietà omomorfica di RSA.
+
+
+Collegamento tra Oracolo RSA e Proprietà Omomorfiche
+
+Queste due idee si intrecciano nei seguenti scenari:
+	
+	1.	Oracolo con RSA omomorfico:
+		La proprietà omomorfica di RSA potrebbe essere sfruttata in attacchi dove un oracolo non solo fornisce la decifrazione di messaggi, ma permette anche manipolazioni dei messaggi cifrati. Un attaccante potrebbe, ad esempio, cifrare due messaggi m_1 e m_2, e chiedere 			all’oracolo se la somma o il prodotto di m_1 e m_2 sia valido, sfruttando la proprietà omomorfica di RSA per ottenere informazioni indirette sui messaggi cifrati.
+	
+	2.	Attacco Chosen-Ciphertext (CCA) con RSA:
+		In un attacco CCA contro RSA, un attaccante può sfruttare la proprietà omomorfica per manipolare il testo cifrato. Supponiamo che l’attaccante possieda un oracolo RSA che gli consente di decifrare qualsiasi messaggio cifrato c. L’attaccante potrebbe quindi eseguire 			operazioni su c (come la moltiplicazione o l’addizione) e inviare il risultato all’oracolo per ottenere la decifrazione del testo manipolato. L’oracolo risponde, e l’attaccante usa queste risposte per dedurre il messaggio originale. Ad esempio, se RSA è utilizzato senza 			una protezione come OAEP (Optimal Asymmetric Encryption Padding), un attaccante potrebbe essere in grado di manipolare i testi cifrati, approfittando della proprietà omomorfica di RSA per combinare i messaggi cifrati in modi che portano alla rivelazione del messaggio 			originale.
+	
+	3.	Protezione con RSA-OAEP:
+		L’adozione di RSA-OAEP (Optimal Asymmetric Encryption Padding) mitiga molti di questi rischi. Il padding introdotto da OAEP impedisce attacchi basati sulla manipolazione del testo cifrato, proteggendo contro le tecniche di chosen-ciphertext che sfruttano la proprietà 			omomorfica. OAEP aggiunge un livello di complessità alla struttura di cifratura, impedendo che l’operazione di moltiplicazione o somma tra cifrati possa essere usata facilmente per ottenere informazioni sui messaggi 	originali.
+
+
+
+
+
+
+Cifrato (flag * un qualsiasi numero a) = cifrato di a * cifrato della flag
+
+
+######################################
+#        ESERCIZIO ORACLE 1		   #
+######################################
+
+--------------------[inizio sorgente PYTHON]--------------------
+
+from Crypto.Util.number import long_to_bytes
+
+#prendi la flag cifrata
+m1 = 127549257694779381438306351328886485867286468424018932124397183501408545067030364156717738139091465919892656333585727900123767002018280221182857481798265451015654178753707583150127389979638924264660443191922466468114140417062813432507612296201824616514339971733073668923206755624719411134282994704938327956850
+
+#prendi un numero molto piccolo per trovare un multiplo
+m2 = 54452313996834731201890963375938477178432241997930135945551429180927349088145092217498830227607189967016717688531013933073790863726571689289714654453709850851040656133618142176931490182349246673016983583871327177729534654780419091179378641355787191368038395158988119346077965831223328671379892499786832941579
+
+#m1 è al la flag cifrata, m2 è un valore molto piccolo cifrato
+
+a = m1*m2
+
+#scrivo il prodotto così da ottenere un multiplo della flag per poi usare la formula omomorfica:
+# m2 criptato * flag criptata mod N = (m2*flag) cifrati mod N
+print(f'prodotto tra m1 e m2 = {a}')
+
+#una volta ottenuto il prodotto lo decifro
+decifrata = 3000022808735202774845654530295155990274297594
+
+#per riottenere solo la flag divido per 2 e trasformo in bytes
+flag = decifrata//2
+
+print(f'la flag è:{long_to_bytes(flag)}')
+
+--------------------[fine sorgente PYTHON]--------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INVERSO MODULARE 
+
+a*x≡ 1 mod N
+
+Es. 5x ≡ 1 mod 3 --> 2 è l'inverso modulare di 5
+
+a * b^(-1) mod N --> io non conosco N, come lo ricavo?
+Per recuperare il modulo N posso mandare il  
+
+
+
+
+
+
+Gtfobins
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

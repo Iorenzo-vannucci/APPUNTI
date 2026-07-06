@@ -1,0 +1,37 @@
+nav{
+    font-family: sans-serif;
+    background-image: url(old-sea-compass-lighthouse-knot-abstract-map-background-pirate-explorer-travel-nautical-theme-grunge-retro-style-143278381.jpg.webp);
+    background-size: cover;
+}
+
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li{
+    flex: 1;
+    border-right: 1px solid black;
+    
+}
+
+nav ul li:last-child{
+    border-right: none;
+}
+
+nav ul li a{
+    display: flex;           
+    justify-content: center; 
+    align-items: center;     
+    height: 60px;            
+    color: white;           
+    width: 100%;             
+    
+}
+
+nav ul li a:hover{
+    color: #ffd700;
+    background-color: rgba(19, 26, 26, 0.277);
+}

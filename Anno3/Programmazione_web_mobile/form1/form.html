@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="login-box">
+        <h1>Login</h1>
+        <form action="/submit" method="post">
+            
+            <div class="input-group-username">
+                <label for="name">Username</label>
+                <input type="text" id="name" placeholder="Type your username" name="name">
+            </div>
+
+            <div class="input-group-password">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Type your password" name="password">
+            </div>
+
+            <div class="password-link">
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <input type="submit" value="LOGIN" class="btn-submit">
+        </form>
+    </div>
+</body>
+</html>

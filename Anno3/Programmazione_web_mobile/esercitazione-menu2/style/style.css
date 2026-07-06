@@ -1,0 +1,112 @@
+body{
+    margin: 0;
+
+}
+
+.navbar{
+    font-family: sans-serif;
+    background-color: #075fad;
+    color: #fff;
+}
+
+#menu-toggle, #menu-toggle2{
+    display: none;
+}
+
+.menu-icon{
+    display: none;
+    font-size: 3em;
+    text-align: right;
+    margin-right: 0.2em;
+    cursor: pointer;
+}
+
+.menu{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.menu a, .dropdown-label{
+    text-decoration: none;
+    color: #fff;
+    padding: 1em 3em;
+    cursor: pointer;
+    border-radius: 1em;
+    
+}
+
+.menu a:hover, .dropdown-label:hover{
+    background-color: #054278;
+    border-bottom: 2px solid #0b6cc2;
+    border-top: 1px solid #073d6c;
+}
+
+.menu-dropdown{
+    display: none;
+    position: absolute;
+    top: 5em;
+    background-color: #3b3b3b;
+    padding: 1em;
+    list-style: none;
+}
+
+.menu-dropdown li{
+    height: 2em;
+    line-height: 2em;
+}
+
+.menu-dropdown a:hover{
+    background-color: initial;
+    border: initial;
+    text-decoration: underline;
+}
+
+
+#menu-toggle2:checked ~ .dropdown-label{            /*la tilde serve per selezionare due elementi fratelli tra loro*/
+    background-color: #054278;
+    border-bottom: 1px solid #0b6cc2;
+    border-top: 1px solid #073d6c;
+}
+
+#menu-toggle2:checked ~ .menu-dropdown{
+    display: block;
+}
+
+@media screen and (max-width: 300px){
+    .menu-icon{
+        display: block;
+    }
+
+    .menu{
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: auto;
+        padding: 1em;
+        display: none;
+    }
+
+    .menu li{
+        padding: 0.5em 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    #menu-toggle:checked ~ .menu{
+        display: block;
+    
+    }
+
+
+    #menu-toggle2:checked ~ .menu-dropdown{
+       position: static;
+       padding-bottom: 0;
+       background-color: #073d6c;
+       border-radius: 0.5em;
+    }
+}

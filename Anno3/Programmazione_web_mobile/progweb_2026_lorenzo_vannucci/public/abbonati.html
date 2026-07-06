@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="script/menu.js" defer></script>
+    <title>Abbonati - Circolo Tennis</title>
+</head>
+<body>
+    <nav>
+    <a href="index.html"><img src="/foto/logo.png" alt="Logo" class="logo"></a>
+    
+    <button class="burger" onclick="toggleMenu()">&#9776;</button>
+    <ul class="menu" id="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="abbonati.html" class="current">Abbonati</a></li>
+        <li><a href="ranking.html">Ranking</a></li>
+        <li><a href="contatti.html">Contatti</a></li>
+        
+        <li id="menuLoginBtn"><a href="login.html" class="login_button">Login</a></li>
+        
+        <li id="menuUserDropdown" class="dropdown" style="display: none;">
+            <button class="dropdown-trigger" onclick="toggleDropdown(event)">
+                <span class="material-symbols-outlined" id="navUserIcon">person</span>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="#" id="linkGestisciAccount">Gestisci Account</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+    <h1 class="page-main-title">DIVENTA MEMBRO</h1>
+
+    <div class="sezione-abbonati">
+        <div class="grid-abbonati">
+            <div class="left-box">
+                <p class="testo-sintetico">
+                    Iscriversi al circolo significa accedere a vantaggi esclusivi: prenotazione prioritaria dei campi, tariffe ridotte sui corsi con maestri nazionali, libero accesso alla piscina e alla palestra, e sconti dedicati nel nostro shop e ristorante.
+                </p>
+            </div>
+            <div class="right-box">
+                <img src="foto/cena_abbonati.png" alt="Cena degli abbonati al circolo" class="hero-img">
+            </div>
+        </div>
+    </div>
+
+    <div class="icons-section">
+        <div class="icons-grid">
+            <div class="icon-item">
+                <div class="icon-oval">
+                    <span class="material-symbols-outlined">sports_tennis</span>
+                </div>
+                <p>campi tennis</p>
+            </div>
+            <div class="icon-item">
+                <div class="icon-oval">
+                    <span class="material-symbols-outlined">fitness_center</span>
+                </div>
+                <p>palestre</p>
+            </div>
+            <div class="icon-item">
+                <div class="icon-oval">
+                    <span class="material-symbols-outlined">pool</span>
+                </div>
+                <p>piscine</p>
+            </div>
+            <div class="icon-item">
+                <div class="icon-oval">
+                    <span class="material-symbols-outlined">restaurant</span>
+                </div>
+                <p>bar/ristorante</p>
+            </div>
+            <div class="icon-item">
+                <div class="icon-oval">
+                    <span class="material-symbols-outlined">local_parking</span>
+                </div>
+                <p>parcheggio</p>
+            </div>
+            <div class="icon-item">
+                <div class="icon-oval">
+                    <span class="material-symbols-outlined">water_drop</span>
+                </div>
+                <p>fontanelle potabile</p>
+            </div>
+            <div class="icon-item">
+                <div class="icon-oval">
+                    <span class="material-symbols-outlined">construction</span>
+                </div>
+                <p>incordatura racchette</p>
+            </div>
+            <div class="icon-item">
+                <div class="icon-oval">
+                    <span class="material-symbols-outlined">sports_handball</span>
+                </div>
+                <p>campo mini tennis</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="pricing-section">
+        <div class="pricing-grid">
+            <div class="pricing-square-card">
+                <h2>BAMBINI</h2>
+                <p class="price">200 € <span class="period">/ anno</span></p>
+            </div>
+            <div class="pricing-square-card">
+                <h2>ADULTI</h2>
+                <p class="price">350 € <span class="period">/ anno</span></p>
+            </div>
+            <div class="pricing-square-card">
+                <h2>AGONISTA</h2>
+                <p class="price">500 € <span class="period">/ anno</span></p>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <img src="foto/logo.png" alt="Logo Circolo" class="footer-logo">
+            <p>Il tuo punto di riferimento per il grande tennis. Passione, competizione e divertimento in un unico club.</p>
+        </div>
+        
+        <div class="footer-col links-col">
+            <h3>Esplora</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="ranking.html">Classifiche</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col links-col">
+            <h3>Supporto</h3>
+            <ul>
+                <li><a href="abbonati.html">Abbonamenti</a></li>
+                <li><a href="contatti.html">Contattaci</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col social-col">
+            <h3>Seguici</h3>
+            <div class="social-icons">
+                <a href="#"><span class="fa fa-instagram" style="font-size:36px"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 Circolo Tennis. Tutti i diritti riservati.</p>
+    </div>
+</footer>
+
+</html>

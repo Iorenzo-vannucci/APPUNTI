@@ -1,0 +1,67 @@
+ LABORATORIO DI SISTEMI OPERATIVI
+ System Calls: User e Kernel mode
+
+
+
+
+fabio.rossi@unipg.it
+075 5855005
+
+
+
+
+                                    1
+                      System Calls
+• Interfaccia per il programmatore ai servizi del sistema
+  operativo
+
+• vi si accede generalmente attraverso API/linguaggi che
+  supportino l'accesso ai servizi del sistema
+
+• varie categorie di chiamate di sistema: accesso ai file, gestione
+  di processi (creazione, terminazione, etc.), IPC (Inter-Process
+  Communication), semafori, etc.
+
+• richiedono il "cambio di contesto": da user mode a kernel
+  mode e viceversa
+                                                                 2
+Dal Prof. Carpi
+
+
+
+
+                  3
+               Kernel e User Mode
+• Kernel Mode: accesso senza limitazioni alle risorse HW/SW del
+  sistema (memoria, dispositivi I/O, registri, codice del S.O.,
+  etc.). Un crash/errore in kernel mode può provocare un
+  arresto del sistema
+
+• User Mode: accesso limitato alle risorse di sistema. Un errore
+  in user mode può provocare il blocco del solo processo utente
+
+• Quando si passa da un Mode ad un altro il S.O. cambia il
+  contesto di esecuzione del processore. Ciò implica un certo
+  consumo di risorse di sistema (tempo di CPU, salvataggio delle
+  informazioni necessarie per ripristinare il contesto
+  precedente, etc.)
+                                                               4
+              Glibc: funzioni wrappers
+• man 2 syscalls
+• man 7 libc
+
+• glibc, la "GNU C Library", è la libreria C standard di solito utilizzata
+  in Linux. Contiene le funzioni standard del C
+
+• le system calls, generalmente, sono invocate tramite funzioni
+  "wrappers" della glibc.
+    – le wrappers hanno di solito lo stesso nome della corrispondente system
+      call sottostante
+    – ove possibile è preferibile chiamare le funzioni wrappers piuttosto che
+      direttamente la system calls.
+    – questo perché spesso si limitano a fare poco altro in più rispetto alla
+      system call (come per esempio copiare dati nei registri e settare in errno il
+      valore di ritorno della system call), ma in altri casi compiono anche altre
+      operazioni come controllo degli argomenti inseriti dal programmatore, etc.
+                                                                                 5
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="script/menu.js" defer></script>
+    <script src="script/ranking.js" defer></script>
+    <script src="script/slider.js" defer></script>
+    <title>Ranking - Circolo Tennis</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html"><img src="/foto/logo.png" alt="Logo" class="logo"></a>
+        
+        <button class="burger" onclick="toggleMenu()">&#9776;</button>
+        <ul class="menu" id="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="abbonati.html">Abbonati</a></li>
+            <li><a href="ranking.html" class="current">Ranking</a></li>
+            <li><a href="contatti.html">Contatti</a></li>
+            
+            <li id="menuLoginBtn"><a href="login.html" class="login_button">Login</a></li>
+            
+            <li id="menuUserDropdown" class="dropdown">
+                <button class="dropdown-trigger" onclick="toggleDropdown(event)">
+                    <span class="material-symbols-outlined" id="navUserIcon">person</span>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="#" id="linkGestisciAccount">Gestisci Account</a>
+                    <a href="#" onclick="logout()">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <header class="ranking-header">
+        <h1 class="page-main-title">RANKING</h1>
+        <p class="subtitle">Classifica interna del circolo</p>
+    </header>
+
+    <div class="slider-section">
+        <div class="slider-container">
+            <img src="foto/torneo1.png" alt="Foto Torneo" id="sliderImg" class="slider-img">
+            
+            <div class="slider-dots">
+                <span class="dot active" onclick="cambiaFoto(0)"></span>
+                <span class="dot" onclick="cambiaFoto(1)"></span>
+                <span class="dot" onclick="cambiaFoto(2)"></span>
+                <span class="dot" onclick="cambiaFoto(3)"></span>
+            </div>
+        </div>
+    </div>
+
+    <section class="info-classifica-section">
+        <div class="info-classifica-card">
+            <h2>Come funziona la classifica interna?</h2>
+            <p>Ogni vittoria ti fa guadagnare punti, mentre le sfide dirette permettono di scavalcare i giocatori che ti precedono in classifica. Scalate la vetta e diventate il numero 1 del circolo!</p>
+        </div>
+    </section>
+
+    <section class="classifiche-container">
+        
+        <div class="ranking-block">
+            <h2 class="ranking-gender-title">Maschile</h2>
+            <div class="ranking-flex-row" id="classificaMaschile"></div>
+        </div>
+
+        <div class="ranking-block">
+            <h2 class="ranking-gender-title">Femminile</h2>
+            <div class="ranking-flex-row" id="classificaFemminile"></div>
+        </div>
+
+        <div class="ranking-block match-box-container" id="sezioneTuttiMatch">
+            <h2 class="ranking-gender-title">Tutti i Match Disputati</h2>
+            <div id="listaTuttiMatch" class="match-box">
+                <p class="text-italic">Caricamento partite...</p>
+            </div>
+        </div>
+
+    </section>
+</body>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <img src="foto/logo.png" alt="Logo Circolo" class="footer-logo">
+            <p>Il tuo punto di riferimento per il grande tennis. Passione, competizione e divertimento in un unico club.</p>
+        </div>
+        
+        <div class="footer-col links-col">
+            <h3>Esplora</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="ranking.html">Classifiche</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col links-col">
+            <h3>Supporto</h3>
+            <ul>
+                <li><a href="abbonati.html">Abbonamenti</a></li>
+                <li><a href="contatti.html">Contattaci</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col social-col">
+            <h3>Seguici</h3>
+            <div class="social-icons">
+                <a href="#"><span class="fa fa-instagram"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 Circolo Tennis. Tutti i diritti riservati.</p>
+    </div>
+</footer>
+</html>

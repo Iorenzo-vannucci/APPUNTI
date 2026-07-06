@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Request</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="login-box">
+        <h1>Software Request</h1>
+        <form action="/submit" method="post">
+                <label for="username">Username</label>
+                <span>
+                    *
+                </span>
+                <input type="text" placeholder="type username" id="username" name="username">
+            
+                <label for="identification">Employee ID</label>
+                <span>
+                    *
+                </span>
+                <input type="number" id="identification" name="identification" placeholder="392174">
+
+                <label for="mail">Email</label>
+                <span>
+                    *
+                </span>
+                <input type="email" id="mail" name="mail" placeholder="mario.rossi@gmail.com">
+                
+                <label for="mobile">mobile</label>
+                
+                <select name="prefix" id="prefix">
+                    <option value="39">+39</option>
+                    <option value="140">+140</option>
+                    <option value="33">+33</option>
+                    <option value="79">+79</option>
+
+                </select>
+                <input type="tel" id="mobile" name="mobile" placeholder="3921941744">
+
+                
+                <span>
+                    <span id="color_span">Which software do you require?</span>
+                    *
+                </span>
+
+                <div class="form-row">
+                    <label for="soft-A">Software A</label>
+                    <input type="checkbox" id="soft-A" name="software-type" value="A">
+                </div>
+
+                <div class="form-row">
+                    <label for="soft-B">Software B</label>
+                    <input type="checkbox" id="soft-B" name="software-type" value="B">
+                </div>
+
+                <div class="form-row">
+                    <label for="soft-C">Software C</label>
+                    <input type="checkbox" id="soft-C" name="software-type" value="C">
+                </div>
+
+                How urgently do you need it?
+                <span>
+                    *
+                </span>
+                <div class="urgently">
+                    <input type="radio" id="hurry" name="urgently" value="hurry">
+                    <label for="hurry">As soon as possible</label>
+                </div>    
+                <div class="urgently">
+                    <input type="radio" id="medium" name="urgently" value="medium">
+                    <label for="medium">Within in 2 or 3 weeks</label>
+                </div>
+                <div class="urgently">
+                    <input type="radio" id="chill" name="urgently" value="chill">
+                    <label for="chill">I'm in no hurry</label>
+                </div>
+
+                <button type="button"> Request </button>
+
+            
+
+        </form>
+    </div>
+</body>
+</html>

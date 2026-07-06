@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="script/menu.js" defer></script>
+    <title>Home - Circolo Tennis</title>
+</head>
+<body>
+    <nav>
+    <a href="index.html"><img src="/foto/logo.png" alt="Logo" class="logo"></a>
+    
+    <button class="burger" onclick="toggleMenu()">&#9776;</button>
+    <ul class="menu" id="menu">
+        <li><a href="index.html" class="current">Home</a></li>
+        <li><a href="abbonati.html">Abbonati</a></li>
+        <li><a href="ranking.html">Ranking</a></li>
+        <li><a href="contatti.html">Contatti</a></li>
+        
+        <li id="menuLoginBtn"><a href="login.html" class="login_button">Login</a></li>
+        
+        <li id="menuUserDropdown" class="dropdown">
+            <button class="dropdown-trigger" onclick="toggleDropdown(event)">
+                <span class="material-symbols-outlined" id="navUserIcon">person</span>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="#" id="linkGestisciAccount">Gestisci Account</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+    <img src="foto/drone_shot.png" class="drone_shot" alt="drone shot">    
+    
+    <div class="welcome-section">
+        <div class="president-container">
+            <h1 class="sr-only">Circolo Tennis - Benvenuti</h1>
+            <img src="foto/firma.png" alt="Firma del Presidente" class="firma">
+            <p>
+            È per me un immenso piacere accogliervi nel nostro circolo, un luogo speciale dove la passione per lo sport si unisce all’amicizia e al divertimento.<br><br>
+            La nostra struttura nasce per farvi sentire a casa: che siate qui per sfidarvi sulla terra battuta nei grandi tornei come il "Circuito dell'Olio d'Oliva", per migliorare il vostro gioco con i nostri maestri o semplicemente per godervi un momento di relax in compagnia, troverete sempre un ambiente accogliente e caloroso.<br><br>
+            Allacciate le scarpe e scendete in campo... Buon tennis a tutti!
+            </p>
+        </div>
+    </div>
+
+    <section class="activities-section">
+        <h2 class="section-title-activity">ATTIVITÀ</h2>    
+        <div class="activities-grid">
+            <div class="activity-card">
+                <h3>SCUOLA TENNIS</h3>
+                <img src="foto/bambini.png" alt="scuola tennis">
+                <div class="overlay-text">
+                    <q>Scuola per avviare i bambini al mondo tennis. Seguiti da esperti del settore, formati per stare in contatto con i giovani giocatori.</q>
+                    <a href="#">Scopri</a>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3>STAGE DI GRUPPO</h3>
+                <img src="foto/stage_adulti.png" alt="stage di gruppo">
+                <div class="overlay-text">
+                    <q>Stage di gruppo per migliorare le abilità di tennis in un ambiente collaborativo. </q>
+                    <a href="#">Scopri</a>
+                </div>
+            </div>
+
+
+            <div class="activity-card">
+                <h3>AGONISTICA</h3>
+                <img src="foto/agonista.png" alt="agonistica">
+                <div class="overlay-text">
+                    <q>Lezioni più performanti per migliorare il vostro gioco. Maestri qualificati per guidarvi nel percorso verso l'eccellenza.</q>
+                    <a href="#">Scopri</a>
+                </div>
+            </div>
+            <div class="activity-card">
+                <h3>CAMPUS ESTIVI</h3>
+                <img src="foto/campus.png" alt="campus estivi">
+                <div class="overlay-text">
+                    <q>Per i più piccolini, stage estivi di approfondimento e sviluppo del gioco. Con tante attività all'aria aperta. E momenti rinfrescanti in piscina.</q>
+                    <a href="#">Scopri</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="staff-section">
+        <h2 class="section-title-staff">STAFF</h2>  
+        <div class="staff-grid">
+            <div class="staff-card">
+                <div class="staff-img-placeholder">
+                    <img class="staff-img" src="foto/coach_1.png" alt="Maestro di Tennis">
+                </div>
+                <div class="staff-info">
+                    <h3>Milica Petrović</h3>
+                    <p>Maestra di Tennis Nazionale</p>
+                </div>
+            </div>
+            <div class="staff-card">
+                <div class="staff-img-placeholder">
+                    <img class="staff-img" src="foto/coach_2.png" alt="Maestro di Tennis">
+                </div>
+                <div class="staff-info">
+                    <h3>Michele Ferri</h3>
+                    <p>Maestro di Tennis Nazionale</p>
+                </div>
+            </div>
+            <div class="staff-card">
+                <div class="staff-img-placeholder">
+                    <img class="staff-img" src="foto/coach_3.png" alt="Maestro di Tennis">
+                </div>
+                <div class="staff-info">
+                    <h3>Federica Rantella</h3>
+                    <p>Maestra di Tennis II grado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+</body>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-col brand-col">
+            <img src="foto/logo.png" alt="Logo Circolo" class="footer-logo">
+            <p>Il tuo punto di riferimento per il grande tennis. Passione, competizione e divertimento in un unico club.</p>
+        </div>
+        
+        <div class="footer-col links-col">
+            <h3>Esplora</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="ranking.html">Classifiche</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col links-col">
+            <h3>Supporto</h3>
+            <ul>
+                <li><a href="abbonati.html">Abbonamenti</a></li>
+                <li><a href="contatti.html">Contattaci</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col social-col">
+            <h3>Seguici</h3>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/cucina.con.lollo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><span class="fa fa-instagram" style="font-size:36px"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 Circolo Tennis. Tutti i diritti riservati.</p>
+    </div>
+</footer>
+</html>
